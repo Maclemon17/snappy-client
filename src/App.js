@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Chat from './pages/Chat'
+import Login from './pages/Login'
+import NotFound from './pages/NotFound'
+import Register from './pages/Register'
+import SetAvatar from './pages/SetAvatar'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	<div>
+		<Routes>
+			<Route path='/chat' element={<Chat />} />
+			<Route path='/login' element={<Login />} />
+			<Route path='/register' element={<Register />} />
+			<Route path='/setavatar' element={<SetAvatar />} />
+
+			{/* not found page */}
+			<Route path='*' element={ <NotFound /> } />
+		</Routes>
+	</div>
+  )
 }
 
-export default App;
+export default App
