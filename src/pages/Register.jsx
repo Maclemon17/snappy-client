@@ -78,10 +78,10 @@ const Register = () => {
             const { data } = await axios.post(registerRoute, userData);
             console.log(data)
             if (data.status === true) {
-                localStorage.setItem("snappyUser", JSON.stringify(data.user));
-                toast.success("Registration succesfull!!", toastOptions);
+                // localStorage.setItem("snappyUser", JSON.stringify(data.user));
+                await toast.success("Registration succesfull!!", toastOptions);
 
-                navigate("/login")
+                navigate("/login");
             } else {
                 toast.error(data.message, toastOptions);
             }

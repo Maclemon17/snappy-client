@@ -44,7 +44,7 @@ const Login = () => {
         }
     }
 
-    // Signup
+    // Signin
     const handleSubmit = async (e) => {
         e.preventDefault();
         
