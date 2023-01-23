@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, } from 'react-router-dom'	
 import Chat from './pages/Chat'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
@@ -7,19 +7,21 @@ import Register from './pages/Register'
 import SetAvatar from './pages/SetAvatar'
 
 const App = () => {
-  return (
-	<div>
-		<Routes>
-			<Route path='/chat' element={<Chat />} />
-			<Route path='/login' element={<Login />} />
-			<Route path='/register' element={<Register />} />
-			<Route path='/setavatar' element={<SetAvatar />} />
+	return (
+		<div>
+			<Routes>
+				<Route exact path='/' element={<Chat />} />
+				<Route path='/chat' element={<Chat />} />
+				<Route path='/login' element={<Login />} />
+				<Route path='/register' element={<Register />} />
+				<Route path='/setavatar' element={<SetAvatar />} />
 
-			{/* not found page */}
-			<Route path='*' element={ <NotFound /> } />
-		</Routes>
-	</div>
-  )
+				{/* not found page */}
+				<Route path='*' element={<NotFound />} />
+			</Routes>
+
+		</div>
+	)
 }
 
 export default App

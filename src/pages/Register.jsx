@@ -81,7 +81,9 @@ const Register = () => {
                 // localStorage.setItem("snappyUser", JSON.stringify(data.user));
                 await toast.success("Registration succesfull!!", toastOptions);
 
-                navigate("/login");
+                setTimeout(() => {  
+                    navigate("/login");
+                }, 2500);
             } else {
                 toast.error(data.message, toastOptions);
             }
