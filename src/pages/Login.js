@@ -56,18 +56,24 @@ const Login = () => {
                 password: values.password
             }
             // console.log(userData)
-            const {data} = await axios.post(loginRoute, userData);
+            try {
+                const {data} = await axios.post(loginRoute, userData)
+                console.log(data)
 
-			// console.log(data)
-            
-            if (data.status === true) { 
-                localStorage.setItem("snappyUser", JSON.stringify(data.user));
-                toast.success("Loggedin succesfull!!", toastOptions);
-                
-                await navigate("/chat")
-            } else {
-                toast.error(data.message, toastOptions);
+                if (data.status === true) { 
+                    // localStorage.setItem("snappyUser", JSON.stringify(data.user));
+                    localStorage.token = data.token
+                    toast.success("Loggedin succesfull!!", toastOptions);
+                    
+                    navigate("/chat")
+                } else {
+                    toast.error(data.message, toastOptions);
+                }
+            } catch (error) {
+                toast.error("Failed, try again", toastOptions);
             }
+
+            
         }
     }
 

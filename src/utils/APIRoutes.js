@@ -6,6 +6,7 @@ const setAvatarRoute = `${host}/api/auth/setavatar`;
 const setAllUsersRoute = `${host}/api/auth/allusers`;
 const sendMessageRoute = `${host}/api/messages/addmsg`;
 const getAllMessagesRoute = `${host}/api/messages/getmsg`;
+const getProfileRoute = `${host}/api/auth/profile`;
 
 export {
     host,
@@ -14,5 +15,6 @@ export {
     setAvatarRoute,
     setAllUsersRoute,
     sendMessageRoute,
-    getAllMessagesRoute
+    getAllMessagesRoute,
+    getProfileRoute
 }
