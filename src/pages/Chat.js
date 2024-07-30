@@ -41,11 +41,11 @@ const Chat = () => {
 
 	useEffect(() => {
 		const fetchUser = async () => {
-			// if (!localStorage.snappyUser {
-			// 	navigate("/login");
-			// } else {
-			// 	setCurrentUser(await JSON.parse(localStorage.snappyUser));
-			// }
+			if (!localStorage.snappyUser) {
+				navigate("/login");
+			} else {
+				setCurrentUser(await JSON.parse(localStorage.snappyUser));
+			}
 			try {
 				const responseData = await axios.get(getProfileRoute, {
 					headers: {

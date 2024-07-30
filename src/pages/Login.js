@@ -50,18 +50,16 @@ const Login = () => {
         
 
         if (handleValidation()) {
-            // console.log("first", loginRoute)
             const userData = {
                 username: values.username,
                 password: values.password
             }
-            // console.log(userData)
+
             try {
                 const {data} = await axios.post(loginRoute, userData)
-                console.log(data)
 
                 if (data.status === true) { 
-                    // localStorage.setItem("snappyUser", JSON.stringify(data.user));
+                    localStorage.setItem("snappyUser", JSON.stringify(data));
                     localStorage.token = data.token
                     toast.success("Loggedin succesfull!!", toastOptions);
                     
