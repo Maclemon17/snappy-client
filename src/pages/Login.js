@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import styled from 'styled-components';
 import logo from '../assets/logo.svg';
+import loader from '../assets/loader.gif';
 import { loginRoute } from '../utils/APIRoutes';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -13,6 +14,7 @@ const Login = () => {
         username: "",
         password: "",
     });
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -24,18 +26,18 @@ const Login = () => {
         theme: "dark"
     }
 
-	useEffect(() => {
-	  if (localStorage.snappyUser) {
-		navigate("/chat")
-	  }
-	  
-	}, []);
-	
+    useEffect(() => {
+        if (localStorage.snappyUser) {
+            navigate("/chat")
+        }
+
+    }, []);
+
 
     const handleValidation = () => {
         const { username, password } = values;
 
-        if (username.trim() === "" || password.trim() === "" ) {
+        if (username.trim() === "" || password.trim() === "") {
             toast.error("Fields cannot be blank!!!", toastOptions);
             return false;
 
@@ -47,7 +49,6 @@ const Login = () => {
     // Signin
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
 
         if (handleValidation()) {
             const userData = {
@@ -55,23 +56,26 @@ const Login = () => {
                 password: values.password
             }
 
+            setIsLoading(true);
             try {
-                const {data} = await axios.post(loginRoute, userData)
+                const { data } = await axios.post(loginRoute, userData)
 
-                if (data.status === true) { 
+                if (data.status === true) {
                     localStorage.setItem("snappyUser", JSON.stringify(data));
-                    localStorage.token = data.token
+                    localStorage.token = data.token;
+
+                    setIsLoading(false);
                     toast.success("Loggedin succesfull!!", toastOptions);
-                    
+
                     navigate("/chat")
                 } else {
+                    setIsLoading(false);
                     toast.error(data.message, toastOptions);
                 }
+
             } catch (error) {
                 toast.error("Failed, try again", toastOptions);
             }
-
-            
         }
     }
 
@@ -85,32 +89,38 @@ const Login = () => {
     return (
         <>
             <FormContainer>
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className="brand">
-                        <img src={logo} alt="logo" />
-                        <h1>snappy</h1>
-                    </div>
+                {
+                    isLoading ?
+                        <div className=''>
+                            <img src={loader} alt="loader" />
+                        </div> :
+                        <form onSubmit={(e) => handleSubmit(e)}>
+                            <div className="brand">
+                                <img src={logo} alt="logo" />
+                                <h1>snappy</h1>
+                            </div>
 
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        name="username"
-                        onChange={(e) => handleChange(e)}
-                    />
-                    
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        autoComplete="true"
-                        onChange={(e) => handleChange(e)}
-                    />
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                name="username"
+                                onChange={(e) => handleChange(e)}
+                            />
 
-                    <button type='submit'>login</button>
-                    <span>
-                        don't have an account? <Link to='/register'>Register</Link>
-                    </span>
-                </form>
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                                autoComplete="true"
+                                onChange={(e) => handleChange(e)}
+                            />
+
+                            <button type='submit'>login</button>
+                            <span>
+                                don't have an account? <Link to='/register'>Register</Link>
+                            </span>
+                        </form>
+                }
 
                 <ToastContainer />
             </FormContainer>

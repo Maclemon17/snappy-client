@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 5% 95%;
   align-items: center;
+  gap: 15px;
   background-color: #080420;
   padding: 0 2rem;
   padding-bottom: 0.3rem;

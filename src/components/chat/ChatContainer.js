@@ -98,7 +98,7 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
 									<div className={`${styles.message} ${message.fromSelf ? styles.sended : styles.received}`}>
 										<div className={styles.content}>
 											<p>{message.message}</p>
-											{/* <span>{message.time}</span> */}
+											<small>{message.time}</small>
 										</div>
 									</div>
 								</div>

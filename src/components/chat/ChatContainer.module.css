@@ -45,14 +45,15 @@
     cursor: pointer;
 }
 
-
-
 .message {
     display: flex;
     align-items: center;
 }
 
 .content {
+	display: flex;
+	align-items: flex-end;
+	gap: 10px;
     max-width: 40%;
     overflow-wrap: break-word;
     padding: 1rem;
@@ -77,7 +78,12 @@
     background-color: #9900ff20;
 }
 
-@media screen and (min-width: 720px)  and (max-WIdth: 1080px) {
+.content small {
+	opacity: 0.5;
+    font-size: xx-small;
+}
+
+@media screen and (min-width: 720px) and (max-WIdth: 1080px) {
     .container {
         grid-auto-rows: 15% 70% 15%;
     }
