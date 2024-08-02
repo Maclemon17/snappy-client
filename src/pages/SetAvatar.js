@@ -91,7 +91,7 @@ const SetAvatar = () => {
                         <div className={styles.avatars}>
                             {
                                 avatars.map((avatar, index) => {
-                                    // console.log(avatar);
+                                   
                                     return (
                                         <div key={index} className={`${styles.avatar} ${selectedAvatar === index ? styles.selected : ""}`}>
                                             <img src={`data:image/svg+xml;base64,${avatar}`}

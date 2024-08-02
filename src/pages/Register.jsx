@@ -68,18 +68,17 @@ const Register = () => {
 
 
         if (handleValidation()) {
-            console.log("first", registerRoute)
             const userData = {
                 username: values.username,
                 email: values.email,
                 password: values.password
             }
-            console.log(userData)
+            
             const { data } = await axios.post(registerRoute, userData);
-            console.log(data)
+            
             if (data.status === true) {
                 // localStorage.setItem("snappyUser", JSON.stringify(data.user));
-                await toast.success("Registration succesfull!!", toastOptions);
+                toast.success("Registration succesfull!!", toastOptions);
 
                 setTimeout(() => {  
                     navigate("/login");

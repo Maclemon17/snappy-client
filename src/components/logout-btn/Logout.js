@@ -7,9 +7,9 @@ const Logout = () => {
 
     const navigate = useNavigate();
 
-    const handleClick = async () => {
-        await localStorage.removeItem("snappyUser");
-        await localStorage.removeItem("token");
+    const handleClick = () => {
+        localStorage.removeItem("snappyUser");
+        localStorage.removeItem("token");
 
         navigate('/login');
     }

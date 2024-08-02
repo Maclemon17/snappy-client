@@ -5,7 +5,7 @@ import styles from "./Welcome.module.css";
 const Welcome = ({ currentUser }) => {
   const [username, setUsername] = useState(undefined);
 
-  // console.log(currentUser.username)
+ 
   useEffect(() => {
     if (currentUser) {
       setUsername(currentUser.username)

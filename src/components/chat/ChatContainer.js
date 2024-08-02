@@ -19,7 +19,7 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
 				from: currentUser._id,
 				to: currentChat._id,
 			});
-			// console.log(allMesssages.data);
+
 			setMessages(allMesssages.data.projectedMessages);
 		}
 
@@ -30,7 +30,6 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
 	useEffect(() => {
 		if (socket.current) {
 			socket.current.on("msg-receive", (msg) => {
-				console.log(msg);
 				setReceivedMessages({ fromSelf: false, message: msg });
 			});
 		}
@@ -48,15 +47,15 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
 
 
 	const handleSendMsg = async (msg) => {
-		await axios.post(sendMessageRoute, {
-			from: currentUser._id,
-			to: currentChat._id,
-			message: msg,
-		}).then((data) => {
-			console.log(data)
-		}).catch((err) => {
-			console.log(err)
-		});
+		try {
+			await axios.post(sendMessageRoute, {
+				from: currentUser._id,
+				to: currentChat._id,
+				message: msg,
+			})
+		} catch (error) {
+			console.log(error);
+		}
 
 		// emit send-msg event || send message to a user
 		socket.current.emit("send-msg", {

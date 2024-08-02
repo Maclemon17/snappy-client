@@ -14,7 +14,6 @@ const ChatInput = ({ handleSendMsg }) => {
     }
 
     const handleEmojiClick = (e, emoji) => {
-        console.log('emoji clicked', emoji, e.emoji);
         let message = msg;
         message += e.emoji;
         setMsg(message);
